@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  padding: 0 1rem;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
+}
+
+.carousel-indicators li {
+    background-color: #000000;
+}
+.carousel-indicators .active{
+    background-color: #f00;
+}
+
+.react-bs-table-header{
+				font-size: 10px;			}
+
+
+
+.btn:hover{
+  background: #f00;
+}
