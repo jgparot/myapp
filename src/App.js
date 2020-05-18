@@ -408,7 +408,7 @@ class App extends React.Component {
 
 
                                   <Carousel.Item>
-                                      <Card style={{ width: '32rem', height: '24rem'}} border={'secondary'}>
+                                      <Card style={{ width: '34rem', height: '24rem'}} border={'secondary'}>
                             <Card.Body>
                             <Card.Title>{acion[0].ticker}</Card.Title>
                                 <Card.Text>
@@ -445,7 +445,7 @@ class App extends React.Component {
                             </Carousel>
                             </Col>
                         <Col>
-                               <Card style={{ width: '32rem', height: '24rem'}} border={'secondary'}>
+                               <Card style={{ width: '34rem', height: '24rem'}} border={'secondary'}>
                             <Card.Body>
                             <Card.Title>Acciones Bursátiles</Card.Title>
                                    {/*<Table1 data={this.state.acciones_instante} refresh={this.refreshTableData} />*/}
