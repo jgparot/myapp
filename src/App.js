@@ -408,7 +408,7 @@ class App extends React.Component {
 
 
                                   <Carousel.Item>
-                                      <Card style={{ width: '34rem', height: '24rem'}} border={'secondary'}>
+                                      <Card style={{ width: '32rem', height: '24rem'}} border={'secondary'}>
                             <Card.Body>
                             <Card.Title>{acion[0].ticker}</Card.Title>
                                 <Card.Text>
