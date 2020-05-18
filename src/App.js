@@ -465,9 +465,9 @@ class App extends React.Component {
 
                    <tr key={index}>
                        <td><h5><Button variant="outline-danger" size="sm" onClick={() => this.handleShow(students[0].name)} >{students[0].name} </Button> </h5></td>
-                       <td>{pasar(students[0].value)}</td>
-                      <td>{pasar(students[0].max)}</td>
-                      <td>{pasar(students[0].min)}</td>
+                       <td>$ {pasar(students[0].value)}</td>
+                      <td>$ {pasar(students[0].max)}</td>
+                      <td>$ {pasar(students[0].min)}</td>
                        <td>{pasar(students[0].total)}</td>
                        {students[0].cambio >= 0 &&
                        <td style={{ color: 'green'}} >+{students[0].cambio}%</td>}
