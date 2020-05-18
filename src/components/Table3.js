@@ -16,6 +16,12 @@ const useStyles = makeStyles({
   },
 });
 
+
+function pasar(item){
+    if (item === undefined){return 0}
+    else{return item.toLocaleString()}
+}
+
 function ccyFormat(num) {
   return `${num.toFixed(2)}`;
 }
@@ -66,31 +72,31 @@ const compraTotal = subcompra(rows);
           {rows.map((row) => (
             <TableRow key={row.desc}>
               <TableCell>{row.desc}</TableCell>
-              <TableCell align="right">{row.qty}</TableCell>
-              <TableCell align="right">{row.unit}</TableCell>
-              <TableCell align="right">{row.price}</TableCell>
+              <TableCell align="right">{pasar(row.qty)}</TableCell>
+              <TableCell align="right">{pasar(row.unit)}</TableCell>
+              <TableCell align="right">{pasar(row.price)}</TableCell>
             </TableRow>
           ))}
 
           <TableRow>
             <TableCell rowSpan={5} />
             <TableCell colSpan={2}>Volumen Total de Compra</TableCell>
-            <TableCell align="right">{ccyFormat(compraTotal)}</TableCell>
+            <TableCell align="right">{pasar(compraTotal)}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Volumen Total de Venta</TableCell>
             <TableCell align="right"></TableCell>
-            <TableCell align="right">{ccyFormat(ventasTotal)}</TableCell>
+            <TableCell align="right">{pasar(ventasTotal)}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Volumen Total de Mercado</TableCell>
             <TableCell align="right"></TableCell>
-            <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
+            <TableCell align="right">{pasar(invoiceSubtotal)}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Volumen Total Absoluto</TableCell>
             <TableCell align="right"></TableCell>
-            <TableCell align="right">{props.total}</TableCell>
+            <TableCell align="right">{pasar(props.total)}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell colSpan={2}>Porcentaje de este mercado sobre el volumen total</TableCell>

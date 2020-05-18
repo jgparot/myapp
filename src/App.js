@@ -28,7 +28,10 @@ import {
 } from 'recharts';
 
 
-
+function pasar(item){
+    if (item === undefined){return 0}
+    else{return item.toLocaleString()}
+}
 
 
 
@@ -113,7 +116,7 @@ class App extends React.Component {
                 var t = new Date(data['time']* 1000);
                 var formatted = ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2);
                 this.state.acciones_prueba[data['ticker']] = [...Object.values(this.state.acciones_prueba[data['ticker']]), {
-                value: data['value'],
+                USD: data['value'],
                 name: formatted,
                 ticker: data['ticker']}];
                 this.setState({acciones_prueba: this.state.acciones_prueba});
@@ -175,7 +178,7 @@ class App extends React.Component {
                 var t = new Date(data['time'] * 1000);
                 var formatted = ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2);
                 this.state.acciones_prueba[data['ticker']] = [ {
-                value: data['value'],
+                USD: data['value'],
                 name:  formatted,
                 ticker: data['ticker']}];
                 this.setState({acciones_prueba: this.state.acciones_prueba});
@@ -422,7 +425,7 @@ class App extends React.Component {
                         <XAxis dataKey="name" />
                         <YAxis />
                         <Tooltip />
-                        <Area type="monotone" dataKey="value" stroke="#DB2A15" fill="#FA9B87" />
+                        <Area type="monotone" dataKey="USD" stroke="#DB2A15" fill="#FA9B87" />
                      </AreaChart>
                     </React.Fragment>
                                 </Card.Text>
@@ -451,7 +454,7 @@ class App extends React.Component {
                             <Table striped bordered hover size="sm">
                           <thead>
 
-                          { ['', 'precio U$D', 'max U$D', 'min U$D', 'Vol. Total','cambio'].map((key, index) =>
+                          { ['', 'precio USD', 'max USD', 'min USD', 'Vol. Total','cambio'].map((key, index) =>
                               <th  key={index}> <p>{key.toUpperCase()}</p> </th>
                           )}
                           </thead>
@@ -462,10 +465,10 @@ class App extends React.Component {
 
                    <tr key={index}>
                        <td><h5><Button variant="outline-danger" size="sm" onClick={() => this.handleShow(students[0].name)} >{students[0].name} </Button> </h5></td>
-                       <td>{students[0].value}</td>
-                      <td>{students[0].max}</td>
-                      <td>{students[0].min}</td>
-                       <td>{students[0].total}</td>
+                       <td>{pasar(students[0].value)}</td>
+                      <td>{pasar(students[0].max)}</td>
+                      <td>{pasar(students[0].min)}</td>
+                       <td>{pasar(students[0].total)}</td>
                        {students[0].cambio >= 0 &&
                        <td style={{ color: 'green'}} >+{students[0].cambio}%</td>}
                        {students[0].cambio < 0 &&
