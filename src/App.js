@@ -102,8 +102,9 @@ class App extends React.Component {
                 this.state.socket.connect();
             console.log('Encendiendo socket 2')
         }
+           // console.log(this.state.anterior)
             this.state.socket.on("UPDATE", (data) => {
-                console.log(data)
+               // console.log(data)
             //console.log(this.state.comprar['AAPL'], this.state.vender['AAPL']);
             if (data['ticker'] in this.state.acciones_instante) {
                 this.state.valor_graf[data['ticker']].push({name: data['time'],value: data['value']})
@@ -116,7 +117,7 @@ class App extends React.Component {
                 name: formatted,
                 ticker: data['ticker']}];
                 this.setState({acciones_prueba: this.state.acciones_prueba});
-
+               // console.log(data.value, this.state.anterior[data.ticker])
                 if (data['value'] > this.state.current_stock[data['ticker']]) {
                     this.state.acciones_instante[data['ticker']] = [{
                         name: data['ticker'],
@@ -147,7 +148,7 @@ class App extends React.Component {
                     }];
                     this.setState({acciones_instante: this.state.acciones_instante});
                     this.state.current_min[data['ticker']] = data['value'];
-                    this.state.anterior[data['ticker']] = data['value']
+                    this.state.anterior[data['ticker']] = data['value'];
                     this.setState({current_min: this.state.current_min});
                     this.setState({anterior: this.state.anterior});
                 }
@@ -181,7 +182,7 @@ class App extends React.Component {
 
 
 
-
+                console.log("ya no en los conocidos")
                 this.state.valor_graf[data['ticker']] = [{name: data['time'],value: data['value']}]
                 this.setState({valor_graf: this.state.valor_graf})
                 this.state.acciones_instante[data['ticker']] = [{
@@ -351,6 +352,9 @@ class App extends React.Component {
         //this.state.mkt.key.forEach
     }
 
+    componentDidMount() {
+        this.onClick()
+    }
 
     refreshTableData = () => this.setState({refreshTableData: !this.state.refreshTableData})
 
@@ -447,7 +451,7 @@ class App extends React.Component {
                             <Table striped bordered hover size="sm">
                           <thead>
 
-                          { ['U$', 'value', 'max', 'min', 'Vol. Total','cambio'].map((key, index) =>
+                          { ['', 'precio U$D', 'max U$D', 'min U$D', 'Vol. Total','cambio'].map((key, index) =>
                               <th  key={index}> <p>{key.toUpperCase()}</p> </th>
                           )}
                           </thead>
@@ -509,6 +513,7 @@ class App extends React.Component {
                           </Card.Body>
                              <Card.Body>
                            <Card.Title>{this.state.mkt[Object.values(market)[0].mkt].name}</Card.Title>
+                                 <Card.Subtitle> Actualmente transa {(this.state.mkt[Object.values(market)[0].mkt]['listed_companies']).length} acciones</Card.Subtitle>
                                 <Card.Text>
                                   Mercado ubicado en {this.state.mkt[Object.values(market)[0].mkt].address}, {this.state.mkt[Object.values(market)[0].mkt].country}.
                                 </Card.Text>

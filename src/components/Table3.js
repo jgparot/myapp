@@ -33,8 +33,13 @@ function subtotal(items) {
   return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
 }
 
+function subventa(items){
+  return items.map(({ qty }) => qty).reduce((sum, i) => sum + i, 0);
+}
 
-
+function subcompra(items){
+  return items.map(({ unit }) => unit).reduce((sum, i) => sum + i, 0);
+}
 
 
 
@@ -43,7 +48,9 @@ export default function SpanningTable(props) {
 
   const rows = props.data;
 const invoiceSubtotal = subtotal(rows);
-const invoiceTotal = invoiceSubtotal / props.total
+const invoiceTotal = invoiceSubtotal / props.total;
+const ventasTotal = subventa(rows);
+const compraTotal = subcompra(rows);
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="spanning table">
@@ -66,17 +73,27 @@ const invoiceTotal = invoiceSubtotal / props.total
           ))}
 
           <TableRow>
-            <TableCell rowSpan={3} />
-            <TableCell colSpan={2}>Total de Mercado</TableCell>
+            <TableCell rowSpan={5} />
+            <TableCell colSpan={2}>Volumen Total de Compra</TableCell>
+            <TableCell align="right">{ccyFormat(compraTotal)}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Volumen Total de Venta</TableCell>
+            <TableCell align="right"></TableCell>
+            <TableCell align="right">{ccyFormat(ventasTotal)}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Volumen Total de Mercado</TableCell>
+            <TableCell align="right"></TableCell>
             <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>Total Absoluto</TableCell>
+            <TableCell>Volumen Total Absoluto</TableCell>
             <TableCell align="right"></TableCell>
             <TableCell align="right">{props.total}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell colSpan={2}>Porcentaje de este mercado sobre el total</TableCell>
+            <TableCell colSpan={2}>Porcentaje de este mercado sobre el volumen total</TableCell>
             <TableCell align="right">{(ccyFormat(invoiceTotal)*100).toFixed(2)}%</TableCell>
           </TableRow>
         </TableBody>
